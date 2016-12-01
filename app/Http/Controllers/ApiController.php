@@ -6,7 +6,14 @@ Use Response;
 
 class ApiController extends Controller{
 
-	protected $statusCode = 200;
+    const HTTP_NOT_FOUND = 404;
+	const HTTP_INTERNAL_ERROR = 500;
+	const HTTP_CREATED = 201;
+	const HTTP_UNPROCESSABLE_ENTITY = 422;
+	const HTTP_OK = 200;
+	
+	protected $statusCode = self::HTTP_OK;
+
 
 	/**
 	 * getter for $statusCode
@@ -40,7 +47,7 @@ class ApiController extends Controller{
 	 **/
 	public function respondNotFound($message = 'Not found!')
 	{
-		return $this->setStatusCode(404)->respondWithError($message);
+		return $this->setStatusCode(self::HTTP_NOT_FOUND)->respondWithError($message);
 	}
 
 	/**
@@ -51,7 +58,7 @@ class ApiController extends Controller{
 	 **/
 	public function respondInternalError($message = 'Internal Error!')
 	{
-		return $this->setStatusCode(500)->respondWithError($message);
+		return $this->setStatusCode(self::HTTP_INTERNAL_ERROR)->respondWithError($message);
 	}	
 
 	/**
@@ -66,7 +73,7 @@ class ApiController extends Controller{
 	}
 
 	/**
-	 * undocumented function
+	 * Respond with error
 	 *
 	 * @return JSON
 	 * @author Fred Carneiro
@@ -78,5 +85,33 @@ class ApiController extends Controller{
 			'status_code' => $this->getStatusCode()
 		]);
 	}
+
+	/**
+	 * Respond with 201 code
+	 *
+	 *
+	 * @param $message
+	 **/
+	public function respondCreated($message = 'Created successfuly')
+	{
+		return $this->setStatusCode(self::HTTP_CREATED)
+			->respond([
+				'message' => $message
+			]);
+	}
+
+	/**
+	 * Respond with 422 code
+	 *
+	 *
+	 * @param $message
+	 **/
+	public function respondUnprocessableEntity($message = 'Parameters Failed')
+	{
+		return $this->setStatusCode(self::HTTP_UNPROCESSABLE_ENTITY)
+			->respond([
+				'message' => $message
+			]);
+	}	
 
 }
