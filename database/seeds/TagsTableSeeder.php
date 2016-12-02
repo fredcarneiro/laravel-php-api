@@ -2,11 +2,11 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
-Use App\Lesson;
+Use App\Tag;
 
 use Faker\Factory as Faker;
 
-class LessonsTableSeeder extends Seeder
+class TagsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -17,11 +17,9 @@ class LessonsTableSeeder extends Seeder
     {
    		$faker = Faker::create();
 
-		foreach (range(1,30) as $index) {
-			Lesson::create([
-				'title' => $faker->sentence(5),
-				'body' => $faker->paragraph(4),
-                'some_bool' => $faker->boolean()
+		foreach (range(1,10) as $index) {
+			Tag::create([
+				'name' => $faker->word()
 			]);
 		}
 
