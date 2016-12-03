@@ -9,7 +9,7 @@ class LessonTransformer extends Transformer
 {
 
 	/**
-     * Transform a Lesson
+     * Transformer for Lesson
      *
      * @return array
      * @author Fred Carneiro
