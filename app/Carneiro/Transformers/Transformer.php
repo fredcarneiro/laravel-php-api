@@ -19,6 +19,17 @@ abstract class Transformer
         return array_map([$this, 'transform'], $items);
     }
 
+     /**
+     * Transform a Collection
+     *
+     * @return array
+     * @author Fred Carneiro
+     **/
+    public function transformCollectionMap($items)
+    {
+        return $items->map([$this, 'transform']);
+    }    
+
     /**
      * undocumented function
      *

@@ -7,7 +7,7 @@ Namespace App;
 */
 class Lesson extends \Eloquent
 {
-	protected $fillable = ['title', 'body'];	
+	protected $fillable = ['title', 'body', 'some_bool'];	
 
 	/**
 	 * Return all tags from a lesson

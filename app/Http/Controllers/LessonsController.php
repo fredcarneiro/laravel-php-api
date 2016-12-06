@@ -30,14 +30,15 @@ class LessonsController extends ApiController
      **/
     public function index()
     {
-    	//return Lesson::all();
+        $limit = request()->limit ?: 3;
 
-        $lessons = Lesson::all();
+        $lessons = Lesson::paginate($limit);
 
-        return $this->respond([
-            'data' => $this->lessonTransformer->transformCollection($lessons->toArray())
-        ]);
+        $transformedCollection = $this->lessonTransformer->transformCollectionMap($lessons->getCollection());
 
+        $lessons->setCollection($transformedCollection);
+
+        return $lessons;
     }
 
     /**
